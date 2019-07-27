@@ -1,0 +1,31 @@
+.image-container, .votes-container{
+	margin: auto;
+	width : 100%;
+	height : auto;
+	position: relative;
+}
+
+#rotate_img {
+	position: absolute;
+	animation: rotation 2s infinite linear;
+	max-width: 30%;
+	max-height: 30%;
+	margin-left: 59vw;
+	top : 30%;
+}
+
+#header {
+	position: relative;
+	margin : auto;
+	display: block;
+	z-index: -1;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

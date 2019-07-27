@@ -10,10 +10,13 @@
   "author": "Leo Maignan",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "bootstrap-loader": "^3.0.4",
     "coinbase": "^2.0.8",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-bearer-token": "^2.2.0",
+    "jquery": "^3.4.1",
     "jsonfile": "^5.0.0",
     "jsonwebtoken": "^8.4.0",
     "mongodb": "^3.1.10",
@@ -22,6 +25,7 @@
     "oauth": "^0.9.15",
     "passport": "^0.4.0",
     "passport-coinbase": "^0.1.2",
+    "popper.js": "^1.15.0",
     "request": "^2.88.0",
     "socket.io": "^2.2.0"
   }

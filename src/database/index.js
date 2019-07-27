@@ -267,7 +267,7 @@ let databaseInfo = configuration.devDatabase;
 let database = new Database(databaseInfo.name, databaseInfo.link);
 
 function createCollections() {
-	database.createCollection("Users");
+	database.createCollection("images");
 }
 
 module.exports = database;
