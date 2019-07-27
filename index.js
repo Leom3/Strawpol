@@ -31,6 +31,24 @@ app.get('/', function(req, res, next) {
 	res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/getVotes', function(req, res, next) {
+	let data = {};
+	var promise = new Promise(function(resolve, reject) {
+		database.findOneInCollection("images", {'id': 1}, function(err, image) {
+			var votes1 = image.votes;
+			data.votes1 = votes1;
+			database.findOneInCollection("images", {'id': 2}, function(err, image2) {
+				data.votes2 = image2.votes;
+				resolve("promise Done");
+			});
+		});
+	});
+
+	promise.then(function() {
+		res.send(data);
+	});
+});
+
 app.post('/likePicture', function(req, res, next) {
 	var responseData = {Success : "Data sent"};
 	var voted = req.query.vote;

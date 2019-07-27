@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css?v=3"></li>
+	<link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="image-container"> 
@@ -13,9 +14,9 @@
 	</div>
 	<div class="votes-container">
 		<button id="button1">Vote !</button>
-		<img src="images/strawpoaezrl.png">
+		<img src="images/17.jpg">
+		<img src="images/14.png">
 		<button id="button2">Vote !</button>
-		<img src="images/strawpoazerl.png"> 
 	</div>
 	<canvas id="votes" width="500" height="100"></canvas>
 </body>
@@ -27,7 +28,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script type="text/javascript">
-	var socket = io.connect('http://localhost:4000');
+	function httpGet(theUrl)
+	{
+    	var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    	xmlHttp.send( null );
+    	return xmlHttp.responseText;
+	}
+	var dataVotes = httpGet("/getVotes");
+	dataVotes = JSON.parse(dataVotes);
+	var socket = io.connect('/');
 	var ctx = document.getElementById('votes').getContext('2d');
 	var chart = new Chart(ctx, {
     	type: 'horizontalBar',
@@ -36,7 +46,7 @@
     		datasets : [{
     			label: "Number of votes",
     			backgroundColor : ["#8e5ea2", "#c45850"],
-    			data : [data.image1, data.image2]
+    			data : [dataVotes.votes1, dataVotes.votes2]
     		}],
     	},
     	options: {
@@ -70,6 +80,8 @@
 				type : "POST",
 				url : "/likePicture?vote=image1"
 			});
+			document.getElementById('button1').style.display = 'none'; 
+        	document.getElementById('button2').style.display = 'none'; 
 		});
 
 		$("#button2").click(function() {
@@ -77,6 +89,8 @@
 				type : "POST",
 				url : "/likePicture?vote=image2"
 			});
+			document.getElementById('button1').style.display = 'none'; 
+			document.getElementById('button2').style.display = 'none'; 
 		});
 	});
 </script>
