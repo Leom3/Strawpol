@@ -27,6 +27,6 @@
     "passport-coinbase": "^0.1.2",
     "popper.js": "^1.15.0",
     "request": "^2.88.0",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.5.0"
   }
 }
